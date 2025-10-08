@@ -1,0 +1,12 @@
+# Dependencies
+/node_modules
+/package-lock.json
+
+# Playwright artifacts
+/test-results
+/playwright-report
+.cache/
+
+# Environment files
+.env
+.env.local
