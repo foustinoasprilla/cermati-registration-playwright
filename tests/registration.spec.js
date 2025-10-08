@@ -10,11 +10,11 @@ function generateTestData(domain = 'mailsac.com', namePattern = 'CLEAN', useRand
     const charCode = 65 + (uniqueCounter % 26);
     const alphabetCounter = String.fromCharCode(charCode); 
     
-    
+
     let uniquePhone = '6289998881212'; // Default: Nomor Tetap
     if (useRandomPhone) {
-        const randomNineDigits = Math.floor(Math.random() * 900000000) + 100000000;
-        uniquePhone = `628${randomNineDigits}`; 
+        const randomTenDigits = Math.floor(Math.random() * 9000000000) + 1000000000;
+        uniquePhone = `628${randomTenDigits}`;
     }
     
     let firstName = 'Foust';
@@ -51,7 +51,8 @@ test.describe('Pendaftaran Akun Cermati - Positive Cases', () => {
         await page.fill('[name="email"]', testData.email);
         await page.fill('[name="firstName"]', testData.firstName);
         await page.fill('[name="lastName"]', testData.lastName);
-        
+        await expect(page.locator(DAFTAR_BUTTON)).not.toBeDisabled({ timeout: 15000 });
+
         await page.click(DAFTAR_BUTTON); 
 
         await page.waitForLoadState('load', { timeout: 20000 });
